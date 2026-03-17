@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dhadakte Dil - Urdu Novel</title>
     <style>
-        /* Maroon Theme as requested */
+        /* Maroon Theme preserved */
         :root { --main: #800000; --bg: #fff5f5; }
         
         body { 
@@ -39,14 +39,6 @@
         .author-line { color: #333; font-weight: bold; font-size: 17px; }
         .tagline-line { color: #555; font-size: 15px; }
 
-        .mini-btns { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .m-btn { 
-            background: white; color: var(--main); border: 1.5px solid var(--main);
-            padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* 6 Parts Grid */
         .grid-container { 
             display: grid; grid-template-columns: 1fr 1fr; 
             gap: 12px; padding: 0 15px; margin-bottom: 20px;
@@ -59,7 +51,10 @@
         }
 
         .novel-container { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; margin-top: 5px; }
+        
+        /* Security Overlay - Locked */
         .security-overlay { position: absolute; top: 0; right: 0; width: 70px; height: 60px; background: transparent; z-index: 9999; }
+        
         iframe { width: 100%; height: 100%; border: none; }
         .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -78,11 +73,6 @@
         <div class="tagline-line">Novels : jo dil m uter jayn❤️...</div>
     </div>
 
-    <div class="mini-btns">
-        <button class="m-btn" onclick="shareMe()">📤 Share App</button>
-        <button class="m-btn" onclick="rateMe()">⭐ Rate Us</button>
-    </div>
-
     <div class="grid-container">
         <button class="p-btn" onclick="openNovel('1Jr-o-xYiDcDwz37A-9_rORENpbPjRqGo')">Part 1</button>
         <button class="p-btn" onclick="openNovel('11jItRKS_JnNPQmgMWRg1ad8mN-RA8cJS')">Part 2</button>
@@ -90,12 +80,6 @@
         <button class="p-btn" onclick="openNovel('1wvSnB0ykAyqnELJQY5HzUAcXmCa0QrCi')">Part 4</button>
         <button class="p-btn" onclick="openNovel('1crtrHsj7j5JVTGXGu4QTJ7ppKMZFoKRn')">Part 5</button>
         <button class="p-btn" onclick="openNovel('1xVecpvt_S1nR2LO-otWTpETnl4FAUh0P')">Part 6</button>
-    </div>
-
-    <div class="ad-box" id="bannerAd" style="display:none; margin:10px auto; max-width:320px;">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8741169014792010" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-app-pub-8741169014792010" data-ad-slot="6693721923" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <div class="novel-container" id="viewArea">
@@ -109,24 +93,16 @@
             const area = document.getElementById('viewArea');
             const frame = document.getElementById('novelFrame');
             const loader = document.getElementById('loadingIcon');
-            const ad = document.getElementById('bannerAd');
-            ad.style.display = 'block';
+            
             area.style.display = 'block';
             loader.style.display = 'block';
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
-            setTimeout(() => { ad.scrollIntoView({ behavior: 'smooth' }); }, 300);
+            
+            setTimeout(() => { area.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
         function stopLoad() { document.getElementById('loadingIcon').style.display = 'none'; }
-        function shareMe() {
-            const shareData = {
-                title: 'Dhadakte Dil Novel',
-                text: 'Dhadakte Dil Urdu Novel by Husny Kanwal parhein!',
-                url: 'https://play.google.com/store/apps/details?id=com.dhadaktedil.novel'
-            };
-            if (navigator.share) { navigator.share(shareData).catch(err => console.log('Error sharing', err)); }
-            else { alert('App link copied to clipboard!'); }
-        }
-        function rateMe() { window.open('https://play.google.com/store/apps/details?id=com.dhadaktedil.novel', '_blank'); }
+        
+        // Security: First Priority
         document.addEventListener('keydown', e => { if (e.ctrlKey && ['c','u','s','p'].includes(e.key)) e.preventDefault(); });
     </script>
 </body>
