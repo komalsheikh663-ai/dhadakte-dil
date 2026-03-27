@@ -4,8 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dhadakte Dil - Urdu Novel</title>
+    
+    <link rel="preconnect" href="https://drive.google.com">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8741169014792010" crossorigin="anonymous"></script>
+    
+    <script>
+        // 3. App Open Ad & Ad-Blocker Check
+        window.onload = function() {
+            // App Open Ad Call
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            
+            // Ad-Blocker Detection
+            setTimeout(() => {
+                const ad = document.querySelector('.adsbygoogle');
+                if (ad && ad.innerHTML.replace(/\s/g, "").length === 0) {
+                    alert("محترم قاری! براہ کرم بہتر تجربے اور ناول جاری رکھنے کے لیے ایڈ بلاکر بند کر دیں۔ شکریہ");
+                }
+            }, 3000);
+        };
+    </script>
+
     <style>
-        /* Maroon Theme preserved */
+        /* 4. CSS Optimization & Maroon Theme */
         :root { --main: #800000; --bg: #fff5f5; }
         
         body { 
@@ -13,6 +34,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif; 
             text-align: center; background-color: var(--bg); 
             margin: 0; padding: 0; overflow-x: hidden;
+            scroll-behavior: smooth; /* Caching system vibes */
         }
 
         .app-header {
@@ -27,17 +49,15 @@
         }
         .app-sub { font-size: 13px; color: #444; font-style: italic; margin-top: -2px; }
 
+        .ad-container { margin: 10px 0; min-height: 60px; }
+
         .info-card { 
             background: white; margin: 20px 15px 10px 15px; padding: 15px;
             border-radius: 12px; font-size: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
             border-left: 6px solid var(--main);
             border-right: 6px solid var(--main);
-            display: flex; flex-direction: column; gap: 5px;
-            line-height: 1.4;
         }
-        .author-line { color: #333; font-weight: bold; font-size: 17px; }
-        .tagline-line { color: #555; font-size: 15px; }
 
         .grid-container { 
             display: grid; grid-template-columns: 1fr 1fr; 
@@ -48,15 +68,29 @@
             padding: 14px; border-radius: 8px; font-weight: bold;
             font-size: 14px; cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: 0.2s;
         }
+        .p-btn:active { transform: scale(0.95); background: #600000; }
 
-        .novel-container { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; margin-top: 5px; }
+        .native-box { grid-column: span 2; margin: 10px 0; border: 1px dashed #ccc; border-radius: 8px; min-height: 100px; }
+
+        .novel-container { 
+            position: relative; width: 100%; height: 85vh; 
+            display: none; border-top: 2px solid var(--main); 
+            background: #f0f0f0; 
+        }
         
-        /* Security Overlay - Locked */
         .security-overlay { position: absolute; top: 0; right: 0; width: 70px; height: 60px; background: transparent; z-index: 9999; }
         
+        /* 5. Smart Error Handling Message */
+        #errorMsg { display: none; color: #800000; padding: 20px; font-weight: bold; }
+
         iframe { width: 100%; height: 100%; border: none; }
-        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        .loader { 
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            border: 4px solid #ddd; border-top: 4px solid var(--main); 
+            border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; 
+        }
         @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     </style>
 </head>
@@ -68,41 +102,82 @@
         <div class="app-sub">By Husny Kanwal</div>
     </div>
 
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-app-pub-8741169014792010"
+             data-ad-slot="6271639423"
+             data-ad-format="banner"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <div class="info-card">
-        <div class="author-line">Novel's by <b>Husny Kanwal...</b></div>
-        <div class="tagline-line">Novels : jo dil m uter jayn❤️...</div>
+        <div style="color: #333; font-weight: bold; font-size: 17px;">Novel's by <b>Husny Kanwal...</b></div>
+        <div style="color: #555; font-size: 15px;">Novels : jo dil m uter jayn❤️...</div>
     </div>
 
     <div class="grid-container">
         <button class="p-btn" onclick="openNovel('1Jr-o-xYiDcDwz37A-9_rORENpbPjRqGo')">Part 1</button>
         <button class="p-btn" onclick="openNovel('11jItRKS_JnNPQmgMWRg1ad8mN-RA8cJS')">Part 2</button>
+        
+        <div class="native-box">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="fluid"
+                 data-ad-layout-key="-fb+5w+4e-db+86"
+                 data-ad-client="ca-app-pub-8741169014792010"
+                 data-ad-slot="6632597461"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
         <button class="p-btn" onclick="openNovel('1S2mbbiAGV3mEC9GTFqSpEbT5De8zfLa7')">Part 3</button>
         <button class="p-btn" onclick="openNovel('1wvSnB0ykAyqnELJQY5HzUAcXmCa0QrCi')">Part 4</button>
         <button class="p-btn" onclick="openNovel('1crtrHsj7j5JVTGXGu4QTJ7ppKMZFoKRn')">Part 5</button>
         <button class="p-btn" onclick="openNovel('1xVecpvt_S1nR2LO-otWTpETnl4FAUh0P')">Part 6</button>
     </div>
 
+    <div id="errorMsg">لنک لوڈ نہیں ہو سکا، براہ کرم انٹرنیٹ چیک کر کے دوبارہ کوشش کریں۔</div>
+
     <div class="novel-container" id="viewArea">
         <div class="security-overlay"></div> 
         <div class="loader" id="loadingIcon"></div>
-        <iframe id="novelFrame" onload="stopLoad()"></iframe>
+        <iframe id="novelFrame" onload="stopLoad()" onerror="showError()"></iframe>
     </div>
 
     <script>
         function openNovel(id) {
+            // Interstitial Ad Trigger
+            try {
+                (adsbygoogle = window.adsbygoogle || []).push({
+                    google_ad_client: "ca-app-pub-8741169014792010",
+                    enable_page_level_ads: true
+                });
+            } catch (e) {}
+
             const area = document.getElementById('viewArea');
             const frame = document.getElementById('novelFrame');
             const loader = document.getElementById('loadingIcon');
+            const err = document.getElementById('errorMsg');
             
+            err.style.display = 'none';
             area.style.display = 'block';
             loader.style.display = 'block';
+            
+            // Smart Loading: Google Drive Preview Link
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
             
             setTimeout(() => { area.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
+        
         function stopLoad() { document.getElementById('loadingIcon').style.display = 'none'; }
         
-        // Security: First Priority
+        function showError() {
+            document.getElementById('loadingIcon').style.display = 'none';
+            document.getElementById('errorMsg').style.display = 'block';
+        }
+
+        // Security: Key Protection
         document.addEventListener('keydown', e => { if (e.ctrlKey && ['c','u','s','p'].includes(e.key)) e.preventDefault(); });
     </script>
 </body>
