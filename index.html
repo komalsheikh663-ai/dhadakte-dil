@@ -9,24 +9,8 @@
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8741169014792010" crossorigin="anonymous"></script>
     
-    <script>
-        // 3. App Open Ad & Ad-Blocker Check
-        window.onload = function() {
-            // App Open Ad Call
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            
-            // Ad-Blocker Detection
-            setTimeout(() => {
-                const ad = document.querySelector('.adsbygoogle');
-                if (ad && ad.innerHTML.replace(/\s/g, "").length === 0) {
-                    alert("محترم قاری! براہ کرم بہتر تجربے اور ناول جاری رکھنے کے لیے ایڈ بلاکر بند کر دیں۔ شکریہ");
-                }
-            }, 3000);
-        };
-    </script>
-
     <style>
-        /* 4. CSS Optimization & Maroon Theme */
+        /* Maroon Theme & Design */
         :root { --main: #800000; --bg: #fff5f5; }
         
         body { 
@@ -34,7 +18,21 @@
             font-family: 'Segoe UI', Roboto, sans-serif; 
             text-align: center; background-color: var(--bg); 
             margin: 0; padding: 0; overflow-x: hidden;
-            scroll-behavior: smooth; /* Caching system vibes */
+            scroll-behavior: smooth;
+        }
+
+        /* ایڈ بلاکر وارننگ کا اسٹائل (جو صرف بلاکر والوں کو دکھے گا) */
+        #blocker-warning {
+            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(128, 0, 0, 0.98); color: white;
+            z-index: 10000; text-align: center; padding-top: 25%;
+            font-family: 'Segoe UI', sans-serif; padding-inline: 20px;
+        }
+        .warning-btn {
+            background: white; color: #800000; padding: 12px 25px;
+            border: none; border-radius: 8px; font-weight: bold; margin-top: 25px;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .app-header {
@@ -42,11 +40,7 @@
             border-bottom: 3px solid var(--main);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .app-title { 
-            font-size: 30px; font-weight: 900; 
-            color: var(--main); margin: 0; 
-            font-family: 'Georgia', serif;
-        }
+        .app-title { font-size: 30px; font-weight: 900; color: var(--main); margin: 0; font-family: 'Georgia', serif; }
         .app-sub { font-size: 13px; color: #444; font-style: italic; margin-top: -2px; }
 
         .ad-container { margin: 10px 0; min-height: 60px; }
@@ -59,10 +53,7 @@
             border-right: 6px solid var(--main);
         }
 
-        .grid-container { 
-            display: grid; grid-template-columns: 1fr 1fr; 
-            gap: 12px; padding: 0 15px; margin-bottom: 20px;
-        }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; margin-bottom: 20px; }
         .p-btn { 
             background: var(--main); color: white; border: none;
             padding: 14px; border-radius: 8px; font-weight: bold;
@@ -70,19 +61,12 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: 0.2s;
         }
-        .p-btn:active { transform: scale(0.95); background: #600000; }
+        .p-btn:active { transform: scale(0.95); }
 
         .native-box { grid-column: span 2; margin: 10px 0; border: 1px dashed #ccc; border-radius: 8px; min-height: 100px; }
 
-        .novel-container { 
-            position: relative; width: 100%; height: 85vh; 
-            display: none; border-top: 2px solid var(--main); 
-            background: #f0f0f0; 
-        }
-        
+        .novel-container { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; }
         .security-overlay { position: absolute; top: 0; right: 0; width: 70px; height: 60px; background: transparent; z-index: 9999; }
-        
-        /* 5. Smart Error Handling Message */
         #errorMsg { display: none; color: #800000; padding: 20px; font-weight: bold; }
 
         iframe { width: 100%; height: 100%; border: none; }
@@ -96,6 +80,12 @@
 </head>
 
 <body oncontextmenu="return false">
+
+    <div id="blocker-warning">
+        <h2>سیکیورٹی الرٹ! ⚠️</h2>
+        <p>محترم قاری! آپ کے فون میں ایڈ بلاکر فعال ہے۔<br>ناول پڑھنے کے لیے براہ کرم اسے بند کریں اور "دوبارہ کوشش کریں" پر کلک کریں۔ شکریہ</p>
+        <button class="warning-btn" onclick="location.reload()">دوبارہ کوشش کریں</button>
+    </div>
 
     <div class="app-header">
         <h1 class="app-title">Dhadakte Dil</h1>
@@ -146,6 +136,24 @@
     </div>
 
     <script>
+        // 1. ایڈ بلاکر ڈیٹیکٹر فنکشن
+        function detectAdBlocker() {
+            const adCheck = document.querySelector('.adsbygoogle');
+            // اگر ایڈ باکس خالی ہو یا اس کی اونچائی 0 ہو تو وارننگ دکھاؤ
+            if (!adCheck || adCheck.offsetHeight === 0 || adCheck.innerHTML.replace(/\s/g, "").length === 0) {
+                document.getElementById('blocker-warning').style.display = 'block';
+                document.body.style.overflow = 'hidden'; // اسکرولنگ بند کر دو
+                document.getElementById('viewArea').style.display = 'none'; // ناول چھپا دو
+            }
+        }
+
+        window.onload = function() {
+            // App Open Ad Call
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            // 5 سیکنڈ بعد بلاکر چیک کریں
+            setTimeout(detectAdBlocker, 5000);
+        };
+
         function openNovel(id) {
             // Interstitial Ad Trigger
             try {
@@ -163,21 +171,18 @@
             err.style.display = 'none';
             area.style.display = 'block';
             loader.style.display = 'block';
-            
-            // Smart Loading: Google Drive Preview Link
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
             
             setTimeout(() => { area.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
         
         function stopLoad() { document.getElementById('loadingIcon').style.display = 'none'; }
-        
         function showError() {
             document.getElementById('loadingIcon').style.display = 'none';
             document.getElementById('errorMsg').style.display = 'block';
         }
 
-        // Security: Key Protection
+        // سیکیورٹی پروٹیکشن
         document.addEventListener('keydown', e => { if (e.ctrlKey && ['c','u','s','p'].includes(e.key)) e.preventDefault(); });
     </script>
 </body>
